@@ -15,6 +15,7 @@ public class Main{
 		}
 		
 		silverStar();
+		goldStar();
 	}
 	
 	private static void silverStar(){
@@ -25,5 +26,16 @@ public class Main{
 			}
 		}
 		System.out.println("Silver star: " + increment);
+	}
+	
+	private static void goldStar(){
+		int increment = 0;
+		for(int i = 2; i < data.size() - 1; i++){
+			//some stuff cancels: data.get(i + 1) + [data.get(i) + data.get(i - 1)] > data.get(i - 2) + [data.get(i - 1) + data.get(i)]
+			if(data.get(i + 1) > data.get(i - 2)){
+				increment++;
+			}
+		}
+		System.out.println("Gold star: " + increment);
 	}
 }
