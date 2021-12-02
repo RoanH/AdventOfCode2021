@@ -66,6 +66,6 @@ public class Main{
 			}
 		}
 		
-		System.out.println("Silver star: " + (dist * depth));
+		System.out.println("Gold star: " + (dist * depth));
 	}
 }
