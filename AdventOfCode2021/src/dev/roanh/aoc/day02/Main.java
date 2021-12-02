@@ -15,6 +15,7 @@ public class Main{
 		in.close();
 		
 		silverStar();
+		goldStar();
 	}
 
 	private static void silverStar(){
@@ -32,6 +33,33 @@ public class Main{
 				break;
 			case "up":
 				depth -= Integer.parseInt(args[1]);
+				break;
+			default:
+				throw new RuntimeException("What?");
+			}
+		}
+		
+		System.out.println("Silver star: " + (dist * depth));
+	}
+	
+	private static void goldStar(){
+		int dist = 0;
+		int aim = 0;
+		int depth = 0;
+		
+		for(String line : lines){
+			String[] args = line.split(" ");
+			switch(args[0]){
+			case "forward":
+				int value = Integer.parseInt(args[1]);
+				dist += value;
+				depth += value * aim;
+				break;
+			case "down":
+				aim += Integer.parseInt(args[1]);
+				break;
+			case "up":
+				aim -= Integer.parseInt(args[1]);
 				break;
 			default:
 				throw new RuntimeException("What?");
