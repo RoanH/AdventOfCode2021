@@ -51,8 +51,18 @@ public class Main{
 	}
 
 	private static void goldStar(){
-		// TODO Auto-generated method stub
-		
+		for(int num : nums){
+			boards.forEach(board->board.mark(num));
+			
+			if(boards.size() == 1){
+				if(boards.get(0).isComplete()){
+					System.out.println("Gold star: " + (num * boards.get(0).unmarkedSum()));
+					break;
+				}
+			}else{
+				boards.removeIf(Board::isComplete);
+			}
+		}
 	}
 	
 	private static class Board{
