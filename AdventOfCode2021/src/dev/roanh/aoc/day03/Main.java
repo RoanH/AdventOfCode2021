@@ -3,6 +3,7 @@ package dev.roanh.aoc.day03;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,42 @@ public class Main{
 	}
 
 	private static void goldStar(){
-		// TODO Auto-generated method stub
+		List<Integer> data = new ArrayList<Integer>(lines);
+		for(int i = length - 1; i >= 0 && data.size() > 1; i--){
+			final int common = mostCommon(data, i);
+			final int idx = i;
+			
+			if(common == 1){
+				data.removeIf(value->((value & (1 << idx)) == 0));
+			}else{
+				data.removeIf(value->((value & (1 << idx)) > 1));
+			}
+		}
+		int oxygen = data.get(0);
 		
+		data = new ArrayList<Integer>(lines);
+		for(int i = length - 1; i >= 0 && data.size() > 1; i--){
+			final int common = mostCommon(data, i);
+			final int idx = i;
+			
+			if(common == 1){
+				data.removeIf(value->((value & (1 << idx)) > 1));
+			}else{
+				data.removeIf(value->((value & (1 << idx)) == 0));
+			}
+		}
+		int co2 = data.get(0);
+
+		System.out.println("Gold star: " + (oxygen * co2));
+	}
+	
+	private static int mostCommon(List<Integer> data, int pos){
+		int one = 0;
+		for(int i : data){
+			if((i & (1 << pos)) > 0){
+				one++;
+			}
+		}
+		return 2 * one >= data.size() ? 1 : 0;
 	}
 }
